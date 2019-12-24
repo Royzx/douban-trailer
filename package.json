@@ -1,7 +1,7 @@
 {
   "name": "douban-trailer",
   "version": "1.0.0",
-  "description": "",
+  "description": "豆瓣预告网站",
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
@@ -26,6 +26,8 @@
     "koa": "^2.11.0",
     "koa-views": "^6.2.1",
     "pug": "^2.0.4",
-    "puppeteer": "^2.0.0"
+    "puppeteer": "^2.0.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.8"
   }
 }
