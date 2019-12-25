@@ -50,3 +50,16 @@ Promise.resolve()
     .then(() => {
         console.log('Promise 的第 2 次回调');
     })
+
+// 执行结果
+// process.nextTick 的回调
+// 出大事了
+// Promise 的第 1 次回调
+// Promise 的第 2 次回调
+// process.nextTick 的 第 2 次回调
+// 0 毫秒后到期执行的定时器回调
+// 完成文件 1 读操作的回调
+// 完成文件 2 读操作的回调
+// immediate 立即回调
+// 100 毫秒后到期执行的定时器回调
+// 200 毫秒后到期执行的定时器回调
