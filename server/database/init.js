@@ -1,0 +1,48 @@
+const mongoose = require('mongoose')
+const db = 'mongodb://localhost/douban-test'
+
+mongoose.Promise = global.Promise
+
+exports.connect = () => {
+    let maxConnectTime = 0
+
+    return new Promise((resolve, reject) => {
+        if (process.env.NODE_ENV !== 'prod') {
+            mongoose.set('debug', true)
+        }
+
+        mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+
+        mongoose.connection.on('disconnected', () => {
+            maxConnectTime++
+
+            if (maxConnectTime < 5) {
+                console.log('第', maxConnectTime, '次重新连接');
+                mongoose.connect(db)
+            } else {
+                throw new Error('数据库挂了，快去修吧')
+            }
+        })
+
+        mongoose.connection.on('error', err => {
+            maxConnectTime++
+
+            if (maxConnectTime < 5) {
+                mongoose.connect(db)
+            } else {
+                throw new Error('数据库挂了，快去修吧')
+            }
+        })
+
+        mongoose.connection.once('open', () => {
+            // const Dog = mongoose.model('Dog', { name: String })
+            // const doga = new Dog({ name: '阿尔法' })
+
+            // doga.save().then(() => {
+            //     console.log('wang');
+            // })
+            resolve()
+            console.log('MongoDB Connected Successfully!');
+        })
+    })
+}
