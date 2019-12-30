@@ -53,6 +53,8 @@ const sleep = time => new Promise(resolve => {
         return links
     })
 
+    console.log("result is :", result);
+
     await browser.close();
 
     process.send({ result })

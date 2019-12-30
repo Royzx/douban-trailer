@@ -1,7 +1,13 @@
 const mongoose = require('mongoose')
 const db = 'mongodb://localhost/douban-test'
+const glob = require('glob')
+const { resolve } = require('path')
 
 mongoose.Promise = global.Promise
+
+exports.initSchemas = () => {
+    glob.sync(resolve(__dirname, './schema/', '**/*.js')).forEach(require)
+}
 
 exports.connect = () => {
     let maxConnectTime = 0
@@ -11,6 +17,7 @@ exports.connect = () => {
             mongoose.set('debug', true)
         }
 
+        mongoose.set('useCreateIndex', true)
         mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 
         mongoose.connection.on('disconnected', () => {
