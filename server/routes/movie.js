@@ -20,7 +20,8 @@ export class movieController {
         const movies = await getAllMoives(type, year)
 
         ctx.body = {
-            movies
+            success: true,
+            data: movies
         }
     }
 
