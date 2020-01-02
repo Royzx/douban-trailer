@@ -4,7 +4,8 @@
   "description": "豆瓣预告网站",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "rm -rf dist && rm -rf .cache && NODE_ENV=development nodemon ./start.js",
+    "build": "rm -rf dist && parcel build src/index.html --no-cache -d dist --public-url /",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,11 +23,13 @@
   },
   "homepage": "https://github.com/Royzx/douban-trailer#readme",
   "dependencies": {
+    "antd": "^3.26.5",
     "bcrypt": "^3.0.7",
     "ejs": "^3.0.1",
     "glob": "^7.1.6",
     "koa": "^2.11.0",
     "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
     "koa-views": "^6.2.1",
     "lodash": "^4.17.15",
     "mongoose": "^5.8.3",
@@ -35,10 +38,14 @@
     "puppeteer": "^2.0.0",
     "qiniu": "^7.2.2",
     "ramda": "^0.26.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-router-dom": "^4.3.1",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.8"
   },
   "devDependencies": {
+    "autoprefixer": "^9.7.3",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
@@ -48,6 +55,9 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "parcel-bundler": "^1.12.4"
+    "cssnext": "^1.8.4",
+    "node-sass": "^4.13.0",
+    "nodemon": "^2.0.2",
+    "parcel-bundler": "^1.9.7"
   }
 }
