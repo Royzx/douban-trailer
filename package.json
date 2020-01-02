@@ -60,6 +60,6 @@
     "cssnext": "^1.8.4",
     "node-sass": "^4.13.0",
     "nodemon": "^2.0.2",
-    "parcel-bundler": "^1.9.7"
+    "parcel-bundler": "^1.10.0"
   }
 }
