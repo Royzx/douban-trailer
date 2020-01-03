@@ -25,6 +25,10 @@ const userSchema = new Schema({
         required: true,
         default: 0
     },
+    role: {
+        type: String,
+        default: 'user'
+    },
     lockUntil: Number,
     meta: {
         createdAt: {
@@ -59,20 +63,19 @@ userSchema.pre('save', function (next) {
         if (err) return next(err)
 
         bcrypt.hash(this.password, salt, (err, hash) => {
-            if (err) return next()
+            if (err) return next(err)
 
             this.password = hash
             next()
         })
     })
-
-    next()
 })
 
 userSchema.methods = {
     comparePassword: (_password, password) => {
         return new Promise((resolve, reject) => {
             bcrypt.compare(_password, password, (err, isMatch) => {
+                console.log(isMatch);
                 if (!err) resolve(isMatch)
                 else reject(err)
             })

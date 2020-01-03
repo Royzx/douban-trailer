@@ -1,7 +1,16 @@
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
 
-export const getAllMoives = async (type, year) => {
+//查询某一条电影数据并删除
+export const findAndRemove = async (id) => {
+    const movie = await Movie.findOne({ _id: id })
+
+    if (movie) {
+        await movie.remove()
+    }
+}
+
+export const getAllMovies = async (type, year) => {
 
     let query
 

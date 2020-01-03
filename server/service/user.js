@@ -9,6 +9,7 @@ export const checkPassword = async (email, password) => {
         match = await user.comparePassword(password, user.password)
     }
 
+
     return {
         match,
         user

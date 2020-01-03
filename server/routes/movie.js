@@ -1,5 +1,5 @@
 const {
-    getAllMoives,
+    getAllMovies,
     getMovieDetail,
     getRelativeMovies
 } = require('../service/movie')
@@ -17,7 +17,7 @@ export class movieController {
     @get('/')
     async getMovies(ctx, next) {
         const { type, year } = ctx.query
-        const movies = await getAllMoives(type, year)
+        const movies = await getAllMovies(type, year)
 
         ctx.body = {
             success: true,
